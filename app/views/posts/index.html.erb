@@ -1,10 +1,9 @@
-
 <div class="main posts-index">
   <div class="container">
-    <!-- 変数postsを@postsに書き換えてください -->
     <% @posts.each do |post| %>
       <div class="posts-index-item">
-        <%= post %>
+        <!-- 以下をlink_toメソッドを用いて書き換えてください -->
+        <%= link_to(post.url,"/posts/#{post.id}") %>
       </div>
     <% end %>
   </div>
