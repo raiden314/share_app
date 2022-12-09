@@ -20,6 +20,7 @@
           <p>グループid</p>
           <input name="gid"value="<%= @user.gid %>">
           <input type="submit" value="保存">
+          <%= link_to("グループID削除", "/users/#{@user.id}/gid/destroy") %>
         <!-- endを追加してください -->
         <% end %>
       </div>

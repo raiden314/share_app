@@ -1,0 +1,72 @@
+/*login.htmlに適応*/
+form{
+    margin-top: 60px;
+    text-align: center;
+}
+.form-control{
+    max-width: 300px;
+    margin: 20px 0 0 480px;
+    height: 30px;
+}
+.login{
+    margin-top: 10px;
+}
+label{
+    margin-left: 490px;
+}
+.btn-primary{
+    margin-top: 30px;
+    width: 300px;
+    display: inline-block;
+    text-decoration: none;
+}
+/* .account-btn{
+  position: fixed;
+} */
+
+/*================== 新規作成ボタン ======================*/
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+.btn{
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.5;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+/*ボタン外側*/
+.btn-radius{
+    margin-top: 30px;
+    margin-left: 33rem;
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 100vh;
+  background: linear-gradient(to bottom, #f2f5f6 0%, #e3eaed 37%, #96a1a5 100%);
+}
+
+/*ボタン内側*/
+a.btn-radius-gradient {
+  border-radius: 100vh;
+  background: linear-gradient(to bottom, #e3eaed 0%, #f2f5f6 100%);
+}
+
+a.btn-radius-gradient:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+
+

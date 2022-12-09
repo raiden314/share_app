@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_08_103906) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_09_090624) do
   create_table "posts", force: :cascade do |t|
     t.string "url"
     t.string "title"
@@ -18,6 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_08_103906) do
     t.string "keyword"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_id"
+    t.string "user_gid"
   end
 
   create_table "users", force: :cascade do |t|
@@ -26,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_08_103906) do
     t.string "gid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "gid_m"
   end
 
 end

@@ -1,8 +1,15 @@
 class PostsController < ApplicationController
   before_action:authenticate_user,{only:[:index,:show,:edit,:update]}
   def index
-    # viewで定義していた配列postsを@postsという変数名で定義してください
-    @posts = Post.all.order(created_at: :desc)
+    if @current_user.gid
+      @posts = Post.where(user_gid: @current_user.gid)
+    else
+      if @current_user != 1 
+        @posts = Post.where(user_id: "#{@current_user.id}")
+      else
+        @posts = Post.all.order(id: :asc)
+      end
+    end
   end
   def show
     @post = Post.find_by(id:params[:id])
@@ -15,7 +22,7 @@ class PostsController < ApplicationController
     @Ti=page.title
     @Su=page.description
     @Ke=page.meta['keywords']
-    @post=Post.new(url:params[:url],title:@Ti,summary:@Su,keyword:@Ke)
+    @post=Post.new(url:params[:url],title:@Ti,summary:@Su,keyword:@Ke,user_id:@current_user.id)
     @post.save
     if @post.save
       # 変数flash[:notice]に、指定されたメッセージを代入してください

@@ -1,0 +1,68 @@
+body{
+	margin:0;
+	padding:0;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+    background-image: url('pastel_00026.jpg');
+}
+h1{
+    margin-left:5em;
+}
+html{
+	box-sizing: border-box;
+    
+	height:100%;
+}
+.outer{
+    margin:auto;
+    
+}
+.inner{
+    position:absolute; /*絶対値指定*/
+    height: 1.2rem; /*高さ指定*/
+    right:0;
+    top:0; /*上からの位置指定*/
+    bottom:0; /*下からの位置指定*/
+    margin:auto;
+    width: 50%;
+}
+.inner.profile{
+    margin:auto;
+}
+.inner a{
+    margin-left:20px;
+}  
+
+/*ヘッダー部分に適応*/
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+}
+
+.view-a {
+  color: #fff;
+} 
+.px-3 py-2 bg-dark text-white a:hover{
+    color: rgb(212, 245, 245);
+}
+
+
+/*フッターに適応*/
+footer{
+	text-align: center;
+	width:100%;	
+	background:blueviolet;
+	position: fixed;/*←固定位置*/
+    bottom: 0; /*下に固定*/
+}
