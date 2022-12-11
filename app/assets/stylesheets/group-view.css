@@ -32,3 +32,6 @@ tr{
  }
 
  table{position: fixed;}
+ h2{
+    margin:auto;
+}

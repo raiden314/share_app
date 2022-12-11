@@ -1,24 +1,66 @@
-<div class="main users-new">
-  <div class="container">
-    <div class="form-heading">ログイン</div>
-    <div class="form users-form">
-      <div class="form-body">
-        <!-- 指定されたHTMLを貼り付けてください -->
+<% content_for :css do %>
+  <%= stylesheet_link_tag 'base',:media => "all" %>
+  <%= stylesheet_link_tag 'user',:media => "all" %>
+<% end %>
+<!DOCTYPE html>
+<html lang="ja">
+
+  <!--ここからタブ-->
+  <head>
+    <meta charset="UTF-8">
+    <title>ログイン</title>
+    <!--css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+  </head>
+
+  <body>
+
+    <h2></h2>
+    <!--ここからメインの内容-->
+    <main class="form-signin">
+      <!--ログイン-->
+      <div class="login">
+        <h1>
+          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z"/>
+          </svg>
+        </h1>
+        <h1>
+          ログイン
+        </h1>
         <% if @error_message %>
           <div class="form-error">
             <%= @error_message %>
           </div>
         <% end %>
         <%= form_tag("/login") do %>
-          <p>名前</p>
-          <!-- value属性を追加してください -->
-          <input name="name" value="<%= @name %>">
-          <p>パスワード</p>
-          <!-- value属性を追加してください -->
-          <input type="password" name="password" value="<%= @password %>">
+          <div class="form-floating">
+            <input name="name" class="form-control" id="floatingInput" value="<%= @name %>">
+            <label for="floatingInput">Username:</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" name="password"  class="form-control" id="floatingPassword" value="<%= @password %>">
+            <label for="floatingPassword">Password:</label>
+          </div>
+          <div class="btn btn-primary btn-block btn-large">
           <input type="submit" value="ログイン">
-        <% end %>
+          </div>
+          <% end %>
+          
+
+        <!--新規作成ボタン-->
+        <div class="btn-radius">
+          <div class="button btn-radius-gradient"><%= link_to("新規登録", "/signup") %></div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+
+     
+
+
+    </main>
+    
+    
+        
+  </body>
+</html>

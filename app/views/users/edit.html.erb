@@ -1,29 +1,76 @@
-<div class="main users-edit">
-  <div class="container">
-    <div class="form-heading">アカウント編集</div>
-    <div class="form users-form">
-      <div class="form-body">
-        <!-- エラーメッセージを表示するためのHTMLを貼り付けてください -->
-        <% @user.errors.full_messages.each do |message| %>
-          <div class="form-error">
-            <%= message %>
+<% content_for :css do %>
+  <%= stylesheet_link_tag 'base',:media => "all" %>
+  <%= stylesheet_link_tag 'user',:media => "all" %>
+<% end %>
+<!DOCTYPE html>
+<html lang="ja">
+
+  <!--ここからタブ-->
+  <head>
+    <meta charset="UTF-8">
+    <title>アカウント編集</title>
+    <!--css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+
+  <body>
+
+    <!--ここからメインの内容-->
+    <main class="form-signin">
+      <!--ログイン-->
+      <div class="login">
+        
+          <h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+              <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+            </svg>
+          </h1>
+          <h2>アカウント編集</h2>
+          <% @user.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+          <%= form_tag("/users/#{@user.id}/update") do %>
+          <div class="form-floating">
+          <input name="name" class="form-control" id="floatingInput" value="<%= @user.name %>">
+            <label for="floatingInput">Username:</label>
+          </div>
+          <div class="form-floating">
+          <input name="password" class="form-control" id="floatingPassword" value="<%= @user.password %>">
+            <label for="floatingPassword">Password:</label>
+          </div>
+          <div class="form-floating">
+            <input name="gid" class="form-control" id="floatingPassword" value="<%= @user.gid %>">
+            <label for="floatingInput">Group ID:</label>
+          </div>
+        
+          
+
+        <!--アカウント情報変更ボタン-->
+        <div>
+          
+          
+          
+        </div>
+        <div class="account-btn">
+            <div class="form-floating">
+              <button type="button"  class="btn btn-primary btn-block btn-large" id="button"><%= link_to("グループID削除", "/users/#{@user.id}/gid/destroy") %></button>
+            </div>
+            <!--アカウント情報変更ボタン-->
+            <div class="form-floating">
+              
+              <input type="submit" class="btn btn-primary btn-block btn-large" value="保存">
+            </div>
           </div>
         <% end %>
-        <!-- フォームの送信先を指定してください -->
-        <%= form_tag("/users/#{@user.id}/update") do %>
-          <p>ユーザー名</p>
-          <!-- name属性を設定してください -->
-          <input name="name"value="<%= @user.name %>">
-          <p>メールアドレス</p>
-          <!-- name属性を設定してください -->
-          <input name="password"value="<%= @user.password %>">
-          <p>グループid</p>
-          <input name="gid"value="<%= @user.gid %>">
-          <input type="submit" value="保存">
-          <%= link_to("グループID削除", "/users/#{@user.id}/gid/destroy") %>
-        <!-- endを追加してください -->
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+
+
+    </main>
+    
+    
+        
+  </body>
+</html>

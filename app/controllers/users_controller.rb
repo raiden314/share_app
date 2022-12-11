@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action:authenticate_user,{only:[:index,:show,:edit,:update]}
   before_action:forbid_login_user,{only:[:new,:create,:login_form,:login]}
   before_action :ensure_correct_user, {only: [:edit, :update]}
-  before_action:ensure__correct_manager,{only:[:show,:index]}
+  before_action:ensure__correct_manager,{only:[:show]}
   
 
   def ensure_correct_group_user
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     end
   end
   def ensure__correct_manager
-    if @current_user.id != 1 && @current_user.id != params[:id].to_i
+    if @current_user.id != params[:id].to_i
       flash[:notice]="権限がありません"
       redirect_to("/users/#{@current_user.id}")
     end
@@ -45,7 +45,8 @@ class UsersController < ApplicationController
     @user = User.new(name: params[:name], password: params[:password])
     @user.save
     @user = User.find_by(name: params[:name])
-    @user.gid_m=nil
+    @user.gid_m=""
+    @user.gname=""
     @user.save
     # 保存が成功したかどうかで条件分岐をしてください
     if @user.save
@@ -110,8 +111,11 @@ class UsersController < ApplicationController
   end
   def gcreate
     @user = User.find_by(id: params[:id])
-    # binding.pry
+    
     @user.gid_m = params[:gid_m]
+    
+    @user.gname = params[:gname]
+    # binding.pry
     @user.save
     if @user.save
       flash[:notice] = "グループの代表者登録が完了しました"
