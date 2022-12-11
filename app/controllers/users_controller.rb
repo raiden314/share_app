@@ -43,6 +43,10 @@ class UsersController < ApplicationController
   end
   def create
     @user = User.new(name: params[:name], password: params[:password])
+    @user.save
+    @user = User.find_by(name: params[:name])
+    @user.gid_m=nil
+    @user.save
     # 保存が成功したかどうかで条件分岐をしてください
     if @user.save
       # 登録されたユーザーのidを変数sessionに代入してください
@@ -99,13 +103,14 @@ class UsersController < ApplicationController
     @user.save
     Post.where(user_id:"#{@user.id}").update(user_gid:nil)
     flash[:notice]="グループIDを削除しました"
-    redirect_to("/users/@user.id")
+    redirect_to("/users/#{@user.id}")
   end
   def gnew
     @user = User.find_by(id: params[:id])
   end
   def gcreate
     @user = User.find_by(id: params[:id])
+    # binding.pry
     @user.gid_m = params[:gid_m]
     @user.save
     if @user.save
@@ -114,5 +119,10 @@ class UsersController < ApplicationController
     else
       render("users/:id/gnew")
     end
+  end
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    redirect_to("/users/index")
   end
 end

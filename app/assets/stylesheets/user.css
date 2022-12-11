@@ -1,38 +1,101 @@
-/*login.htmlに適応*/
-form{
-    margin-top: 60px;
-    text-align: center;
+
+/*================= フォーム ===================*/
+/*レスポンシブ対応*/
+.login { 
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin: -150px 0 0 -150px;
+  width:300px;
+  height:300px;
 }
-.form-control{
-    max-width: 300px;
-    margin: 20px 0 0 480px;
-    height: 30px;
+
+/*レスポンシブ対応　ヘッダーあり*/
+.login-header{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -150px 0 0 -150px;
+  width:300px;
+  height:300px;
 }
-.login{
-    margin-top: 10px;
+
+.login h1,h2 {
+  text-shadow: 0 0 10px rgba(0,0,0,0.3); 
+  letter-spacing:1px; 
+  text-align:center; 
 }
-label{
-    margin-left: 490px;
+
+/*名前＆パスワードラベル*/
+input { 
+  margin-bottom: 10px; 
+  border: none;
+  outline: none;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
 }
-.btn-primary{
-    margin-top: 30px;
-    width: 300px;
-    display: inline-block;
-    text-decoration: none;
+
+/*================= ログインボタンなど ===================*/
+.btn {
+  display: inline-block;
+  *display: inline; 
+  *zoom: 1; 
+  padding: 4px 10px 4px; 
+  margin-bottom: 0; 
+  font-size: 13px; 
+  line-height: 18px; 
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); 
+  vertical-align: middle; 
+  background-color: #f5f5f5; 
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); 
+  background-image: linear-gradient(top, #ffffff, #e6e6e6); 
+  background-repeat: repeat-x; 
+  cursor: pointer; 
+  *margin-left: .3em; 
 }
-/* .account-btn{
-  position: fixed;
-} */
+
+.btn-large { 
+  padding: 9px 14px; 
+  font-size: 15px; 
+  line-height: normal; 
+}
+
+.btn:hover { 
+  color: #333333; 
+  text-decoration: none; 
+  background-color: #e6e6e6; 
+  background-position: 0 -15px; 
+  -webkit-transition: background-position 0.1s linear; 
+  -moz-transition: background-position 0.1s linear; 
+  -ms-transition: background-position 0.1s linear; 
+  -o-transition: background-position 0.1s linear; 
+  transition: background-position 0.1s linear; 
+}
+
+.btn-primary { 
+  background-color: #4a77d4; 
+  background-image: -webkit-linear-gradient(top, #6eb6de, #4a77d4); 
+  background-image: linear-gradient(top, #6eb6de, #4a77d4); 
+  background-repeat: repeat-x; 
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.4); 
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); 
+}
+
+.btn-primary:hover{ 
+  filter: none; background-color: #4a77d4; 
+  color: #fff;
+}
+
+.btn-block { 
+  width: 100%; 
+  display:block; 
+}
+
+
 
 /*================== 新規作成ボタン ======================*/
-*,
-*:before,
-*:after {
-  -webkit-box-sizing: inherit;
-  box-sizing: inherit;
-}
-
-.btn{
+.button{
+  text-decoration: none;
   font-size: 1.3rem;
   font-weight: 700;
   line-height: 1.5;
@@ -49,8 +112,8 @@ label{
 
 /*ボタン外側*/
 .btn-radius{
-    margin-top: 30px;
-    margin-left: 33rem;
+  text-align: center;
+  margin-top: 10px;
   display: inline-block;
   padding: 0.5rem;
   border-radius: 100vh;
@@ -68,5 +131,6 @@ a.btn-radius-gradient:hover {
   transform: scale(1.05);
 }
 
-
-
+.account-btn a{ 
+  margin-top: 10px;
+} 

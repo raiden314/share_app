@@ -1,0 +1,58 @@
+
+h2{
+    text-align: center;
+}
+
+
+main{
+    text-align:center;
+}
+.content {
+    margin:auto;
+    margin-top:20px;
+    border-width:5px;
+	border-color: #006DD9;
+	border-style: inset;
+	width: 50%;
+	height: 20%;
+}
+.contenttext{
+    text-align:left;
+}
+.image{
+    vertical-align:top;
+}
+
+.image{
+    margin-right:20px;
+}
+
+
+ul.list-group{
+    margin-top:30px;
+}
+/*名前枠*/
+.list-group-item{
+    width:50%;
+    height:30%;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
+}
+/*削除ボタン*/
+td .list-group-item{
+    width:70px;
+}   
+td .list-group-item:hover{
+    color:blue;
+}
+
+.user-view p{
+    display: inline-block;
+}
+tr{
+    height:40px; 
+ }
+
+
+

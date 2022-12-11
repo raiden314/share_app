@@ -10,9 +10,11 @@
           </div>
         <% end %>
         
-        <%= form_tag("/users/:id/gcreate") do %>
+        <%= form_tag("/users/#{@user.id}/gcreate") do %>
           <p>グループID</p>
-          <input name="git_m" value="<%= @user.gid_m %>">
+          
+          <input name="gid_m" value="<%= @user.gid_m %>">
+            
           <input type="submit" value="新規登録">
         <% end %>
       </div>

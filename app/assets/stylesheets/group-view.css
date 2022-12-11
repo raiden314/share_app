@@ -1,0 +1,34 @@
+main{
+   
+    margin:auto;
+    padding:20px;
+}
+
+li{
+    list-style:none;
+}
+
+/* bootstrapのcssでborder-width:0;と宣言されているので、線が引けない */
+
+/*名前枠*/
+.list-group-item{
+    width:220px;
+    height:45px;
+}
+/*削除ボタン*/
+li.list-group-item{
+    width:250px;
+    text-align:left;
+} 
+td .list-group-item:hover{
+    color:blue;
+}
+
+.user-view p{
+    display: inline-block;
+}
+tr{
+    height:40px; 
+ }
+
+ table{position: fixed;}

@@ -71,3 +71,6 @@ group :test do
   gem "webdrivers"
 end
 gem 'metainspector'
+gem 'pry-rails'
+gem 'pry-byebug'
+gem 'web-console'

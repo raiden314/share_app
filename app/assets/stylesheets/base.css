@@ -1,19 +1,27 @@
-body{
-	margin:0;
+/*全てに適応*/
+* { 
+  box-sizing:border-box; 
+}
+  
+html { 
+    width: 100%; height:100%;  
+}
+  
+body { 
+    width: 100%;
+    height:100%;
+    font-family: 'Open Sans', sans-serif;
+    margin:0;
 	padding:0;
 	min-height: 100%;
 	display: flex;
 	flex-direction: column;
     background-image: url('pastel_00026.jpg');
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
 }
-h1{
-    margin-left:5em;
-}
-html{
-	box-sizing: border-box;
-    
-	height:100%;
-}
+
+
+
 .outer{
     margin:auto;
     
@@ -35,7 +43,6 @@ html{
 }  
 
 /*ヘッダー部分に適応*/
-
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -50,19 +57,28 @@ html{
     }
 }
 
+.hover li:hover{
+    background-color: rgb(171, 169, 162);
+}
+
 .view-a {
   color: #fff;
 } 
 .px-3 py-2 bg-dark text-white a:hover{
     color: rgb(212, 245, 245);
 }
-
-
-/*フッターに適応*/
-footer{
-	text-align: center;
-	width:100%;	
-	background:blueviolet;
-	position: fixed;/*←固定位置*/
-    bottom: 0; /*下に固定*/
-}
+.flash {
+    padding: 10px 0;
+    color: white;
+    background: rgb(251, 170, 88);
+    text-align: center;
+    position: absolute;
+    top: 64px;
+    z-index: 10;
+    width: 100%;
+    border-radius: 0 0 2px 2px;
+    font-size: 14px;
+  }
+  .form-error {
+    color: #ff4d75;
+  }
