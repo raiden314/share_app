@@ -1,15 +1,12 @@
 class PostsController < ApplicationController
   before_action:authenticate_user,{only:[:index,:show,:edit,:update]}
   def index
-    if @current_user.gid
+    if @current_user.gid.present?
       @posts = Post.where(user_gid: @current_user.gid)
     else
-      if @current_user != 1 
-        @posts = Post.where(user_id: "#{@current_user.id}")
-      else
-        @posts = Post.all.order(id: :asc)
-      end
+      @posts = Post.where(user_id: "#{@current_user.id}")
     end
+    # binding.pry
   end
   def show
     @post = Post.find_by(id:params[:id])
@@ -18,18 +15,26 @@ class PostsController < ApplicationController
     @post=Post.new
   end
   def create
-    page = MetaInspector.new(params[:url])
-    @Ti=page.title
-    @Su=page.description
-    @Ke=page.meta['keywords']
-    @post=Post.new(url:params[:url],title:@Ti,summary:@Su,keyword:@Ke,user_id:@current_user.id)
-    @post.save
-    if @post.save
-      # 変数flash[:notice]に、指定されたメッセージを代入してください
-      flash[:notice]="投稿を作成しました"
-      redirect_to("/posts/index")
+    if URI::DEFAULT_PARSER.make_regexp.match(params[:url])
+      page = MetaInspector.new(params[:url])
+      if page.title.present?
+        @Ti=page.title
+      else
+        @Ti=page.meta['title']
+      end
+      @Su=page.description
+      @Ke=page.meta['keywords']
+      @post=Post.new(url:params[:url],title:@Ti,summary:@Su,keyword:@Ke,user_id:@current_user.id,user_gid:@current_user.gid)
+      if @post.save
+        # 変数flash[:notice]に、指定されたメッセージを代入してください
+        flash[:notice]="投稿を作成しました"
+        redirect_to("/posts/index")
+      else
+        render("posts/new",status: :unprocessable_entity)
+      end
     else
-      render("posts/new")
+      @error_message="URLを入力してください"
+      render("posts/new",status: :unprocessable_entity)
     end
   end
   def edit
@@ -47,7 +52,7 @@ class PostsController < ApplicationController
       flash[:notice]="投稿を編集しました"
       redirect_to("/posts/index")
     else
-      render("posts/edit")
+      render("posts/edit",status: :unprocessable_entity)
     end
   end
   def destroy

@@ -55,14 +55,16 @@
               </li>
     
               <!--グループ一覧nav-->
-              <li>
-                <a href="group-view.html" class="nav-link text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ui-checks" viewBox="0 0 16 16">
-                    <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-                  </svg>
-                  <%= link_to("グループ一覧", "/users/index") %>   
-                </a>
-              </li>
+              <% if @current_user.gid.present? %>
+                <li>
+                  <a href="group-view.html" class="nav-link text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ui-checks" viewBox="0 0 16 16">
+                      <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                    <%= link_to("グループ一覧", "/users/index") %>   
+                  </a>
+                </li>
+              <% end %>
     
               <!--記事の新規投稿nav-->
               <li>
@@ -105,26 +107,24 @@
 
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">キーワード</label>
-              <textarea class="form-control" id="exampleFormControlTextarea2"  placeholder="遊び、スポーツ、仕事、etc"rows="3"><%= @post.keyword %></textarea>
+              <div class="form-control" id="exampleFormControlTextarea2"  placeholder="遊び、スポーツ、仕事、etc"rows="3"><%= @post.keyword %></div>
             </div>    
 
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">URL</label>
-              <textarea class="form-control" id="exampleFormControlTextarea3"  placeholder="https:"rows="3"><%= @post.url %></textarea>
+              <div class="form-control" id="exampleFormControlTextarea3"><%= link_to "#{@post.url}", "#{@post.url}" %></div>
             </div>
                
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">内容説明</label>
-              <textarea class="form-control" id="exampleFormControlTextarea4"  rows="15"><%= @post.summary %></textarea>
+              <div class="form-control" id="exampleFormControlTextarea4"><%= @post.summary %></div>
             </div>
-
-            <div class="upload">
+            <% if @post.user_id == @current_user.id.to_s %>
+              <div class="upload">
                 <label class="btn btn-outline-primary" ><%= link_to("編集", "/posts/#{@post.id}/edit") %></label>
-                <!-- リンク未作成 -->
-                
                 <div class="btn btn-outline-primary"><%= button_to("削除", "/posts/#{@post.id}/destroy", data: { turbo_method: :delete }) %>
-            </div>
-               
+              </div>
+            <% end %>
             
 </main>
 

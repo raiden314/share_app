@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post "users/create" => "users#create"
   get "signup" => "users#new"
   get 'users/index'
+  post "users/:id/gm_destroy" => "users#gm_destroy"
   post "users/:id/destroy" => "users#destroy"
   get "/" => "home#top"
   get "users/:id" => "users#show"

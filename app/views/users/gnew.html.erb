@@ -56,14 +56,16 @@
                 </li>
       
                 <!--グループ一覧nav-->
-                <li>
-                  <a href="group-view.html" class="nav-link text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ui-checks" viewBox="0 0 16 16">
-                      <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-                    </svg>
-                    <%= link_to("グループ一覧", "/users/index") %>   
-                  </a>
-                </li>
+                <% if @current_user.gid.present? %>
+                  <li>
+                    <a href="group-view.html" class="nav-link text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ui-checks" viewBox="0 0 16 16">
+                        <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                      </svg>
+                      <%= link_to("グループ一覧", "/users/index") %>   
+                    </a>
+                  </li>
+                <% end %>
       
                 <!--記事の新規投稿nav-->
                 <li>
@@ -96,18 +98,18 @@
   <main>
     <div class="login-header">
       <h2>グループ作成</h2>
-      <% @user.errors.full_messages.each do |message| %>
+      <% if @error_message %>
         <div class="form-error">
-          <%= message %>
+          <%= @error_message %>
         </div>
       <% end %>
       <%= form_tag("/users/#{@user.id}/gcreate") do %>
       <div class="form-floating">
-      <input name="gid_m"  class="form-control" id="floatingPassword" value="<%= @user.gname %>">
+      <input name="gname"  class="form-control" id="floatingPassword" value="<%= @user.gname %>">
       <label for="floatingPassword">Group NAME:</label>
       </div>
       <div class="form-floating">
-      <input name="gname" class="form-control" id="floatingPassword" value="<%= @user.gid_m %>">
+      <input name="gid_m" class="form-control" id="floatingPassword" value="<%= @u_gid %>">
         <label for="floatingPassword">Group ID:</label>
       </div>
         
@@ -119,6 +121,7 @@
             <div class="btn btn-primary btn-block btn-large"><input type="submit" value="新規登録"></div>
           </div>
           <% end %>
+          <div class="btn btn-primary btn-block btn-large"><%= button_to("削除", "/users/#{@user.id}/gm_destroy", data: { turbo_method: :delete }) %></div>
     </div>
     
   </main>
