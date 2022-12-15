@@ -1,0 +1,156 @@
+.index_img
+{
+    width: 50%;
+    height: auto;
+}
+
+.index_text
+{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#index_header
+{
+    text-align: center;
+}
+
+.scrolldown4{
+    /*描画位置※位置は適宜調整してください*/
+  position:absolute;
+  bottom:100%;
+  right:50%;
+    /*矢印の動き1秒かけて永遠にループ*/
+  animation: arrowmove 1s ease-in-out infinite;
+}
+
+/*下からの距離が変化して全体が下→上→下に動く*/
+@keyframes arrowmove{
+      0%{bottom:1%;}
+      50%{bottom:3%;}
+     100%{bottom:1%;}
+ }
+
+/*Scrollテキストの描写*/
+.scrolldown4 span{
+    /*描画位置*/
+  position: absolute;
+  left:-20px;
+  bottom:200px;
+    /*テキストの形状*/
+  color: black;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  /*縦書き設定*/
+  
+}
+
+/* 矢印の描写 */
+.scrolldown4:before {
+    content: "";
+    /*描画位置*/
+    position: absolute;
+    bottom: 190px;
+    right: -22px;
+    /*矢印の形状*/
+    display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0 10px;
+  border-bottom: 4px solid #000;
+  border-right: 4px solid #000;
+  transform: rotate(45deg);
+}
+
+
+
+#index_main
+{
+    text-align: center;
+   
+    margin: 0 auto;
+    height: 300px;
+    width: 500px;
+}
+
+.login
+{
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    margin: 0 auto;
+    
+    font-size: 1.0rem;
+    font-weight: bold;
+    position: relative;
+    top:100px;
+}
+
+
+.login_start
+{
+    color: red;
+    text-decoration: none;
+}
+
+*,
+*:before,
+*:after{
+  box-sizing: border-box;
+}
+
+.login_start{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login_start{
+  display: block;
+  width: 250px;
+  height: 50px;
+  line-height: 46px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 50px;
+  border: 3px solid black;
+  color: black;
+  font-size: 20px;
+  font-family: arial;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  text-transform: uppercase;
+  transition: all .35s;
+}
+
+.login_start:before,
+.login_start:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  background:   black;
+  z-index: -1;
+  transition: all .35s;
+}
+
+.login_start:before{
+  opacity: .5;
+}
+
+.login_start:after{
+  transition-delay: .2s;
+}
+
+.login_start:hover{
+  color: white;
+}
+
+.login_start:hover:before,
+.login_start:hover:after{
+  top: 0;
+}
