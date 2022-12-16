@@ -94,10 +94,11 @@
           </div>
         </div>
     </header> 
-    <! % if @current_user.gid.present? %>
+    <% if @current_user.gid.present? %>
       <h2>グループ一覧</h2>
       <h2>チーム名：<%= @user.gname %></h2>
       <h2>人数：<%= @users.count %>人</h2>
+    <% end %>
   <!--メインの内容-->
 
   <main>

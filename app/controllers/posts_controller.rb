@@ -1,6 +1,19 @@
 class PostsController < ApplicationController
   before_action:authenticate_user,{only:[:index,:show,:edit,:update]}
-  
+  before_action:ensure_correct_group_user_p,{only: [:show]}
+
+  #同じグループではない人を弾く
+  def ensure_correct_group_user_p
+    @post=Post.find_by(id:@current_user.id)
+    if @post.user_gid == Post.find_by(id: params[:id]).user_gid
+    else
+      if Post.find_by(id: params[:id]).user_id != @post.user_id
+        flash[:notice]="権限がありません"
+        redirect_to("/users/#{@current_user.id}")
+      end
+    end
+  end
+
   def index
     if @current_user.gid.present?
       @posts = Post.where(user_gid: @current_user.gid)

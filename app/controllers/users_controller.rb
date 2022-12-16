@@ -1,16 +1,19 @@
 class UsersController < ApplicationController
   before_action:authenticate_user,{only:[:index,:show,:edit,:update]}
   before_action:forbid_login_user,{only:[:new,:create,:login_form,:login]}
-  before_action:ensure_correct_group_user,{only: [:show]}
+  before_action:ensure_correct_group_user_u,{only: [:show]}
   before_action:ensure_correct_user, {only: [:edit]}
   before_action:individual_user,{only: [:index]}
 
   #同じグループではない人を弾く
-  def ensure_correct_group_user
+  def ensure_correct_group_user_u
     @user=User.find_by(id:@current_user.id)
-    if @user.gid != User.find_by(id: params[:id]).gid || User.find_by(id: params[:id]).id != @current_user.id
-      flash[:notice]="権限がありません"
-      redirect_to("/users/#{@current_user.id}")
+    if @user.gid == User.find_by(id: params[:id]).gid
+    else
+      if User.find_by(id: params[:id]).id != @current_user.id
+        flash[:notice]="権限がありません"
+        redirect_to("/users/#{@current_user.id}")
+      end
     end
   end
   #そのユーザしか編集できない
@@ -34,12 +37,10 @@ class UsersController < ApplicationController
     else
       @users = User.where(id: "#{@current_user.id}")
     end
-    
   end
   def show
     @user = User.find_by(id: params[:id])
     @posts = Post.where(user_id: "#{@user.id}")
-    # binding.pry
   end
   def new
     @user=User.new
@@ -63,14 +64,25 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.name = params[:name]
     @user.password = params[:password]
-    @user.gid = params[:gid]
-    @user.save
-    Post.where(user_id:"#{@user.id}").update(user_gid:@user.gid)
-    if @user.save
-      redirect_to("/users/#{@user.id}")
-      flash[:notice]="ユーザー情報を編集しました"
-    else
+    @u=User.find_by(gid_m:params[:gid])
+    begin
+      if params[:gid] == @u.gid_m
+      end
+    rescue
+      @error_message = "間違ったグループIDです"
+      @user.gid = params[:gid]
       render("users/edit",status: :unprocessable_entity)
+    else
+      @user.gid = params[:gid]
+      @user.save
+      Post.where(user_id:"#{@user.id}").update(user_gid:@user.gid)
+      if @user.save
+        redirect_to("/users/#{@user.id}")
+        flash[:notice]="ユーザー情報を編集しました"
+      else
+        @user.gid = params[:gid]
+        render("users/edit",status: :unprocessable_entity)
+      end
     end
   end
   def login_form
@@ -121,9 +133,9 @@ class UsersController < ApplicationController
   def gnew
     @user = User.find_by(id: params[:id])
     if @user.gid_m.to_i == @user.id
-      @u_gid = ""
+      @m_gid = ""
     else
-      @u_gid = @user.gid_m
+      @m_gid = @user.gid_m
     end
   end
   #管理者用のグループIDを作成
@@ -139,7 +151,7 @@ class UsersController < ApplicationController
       redirect_to("/users/#{@user.id}")
     else
       @error_message="そのグループIDは使われています"
-      @u_gid=params[:gid_m]
+      @m_gid=params[:gid_m]
       render("users/gnew",status: :unprocessable_entity)
     end
   end

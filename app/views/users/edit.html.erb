@@ -28,11 +28,11 @@
             </svg>
           </h1>
           <h2>アカウント編集</h2>
-          <% @user.errors.full_messages.each do |message| %>
-            <div class="form-error">
-              <%= message %>
-            </div>
-          <% end %>
+          <% if @error_message %>
+          <div class="form-error">
+            <%= @error_message %>
+          </div>
+        <% end %>
           <%= form_tag("/users/#{@user.id}/update") do %>
           <div class="form-floating">
           <input name="name" class="form-control" id="floatingInput" value="<%= @user.name %>">
