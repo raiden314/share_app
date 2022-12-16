@@ -56,9 +56,7 @@
           
         </div>
         <div class="account-btn">
-            <div class="form-floating">
-              <button type="button"  class="btn btn-primary btn-block btn-large" id="button"><%= link_to("グループID削除", "/users/#{@user.id}/gid/destroy") %></button>
-            </div>
+            
             <!--アカウント情報変更ボタン-->
             <div class="form-floating">
               
@@ -66,6 +64,9 @@
             </div>
           </div>
         <% end %>
+            <div class="form-floating">
+              <div class="btn btn-primary btn-block btn-large" id="button"><%= button_to("グループID削除", "/users/#{@user.id}/gid/destroy", data: { turbo_method: :delete }) %></div>
+            </div>
 
 
     </main>

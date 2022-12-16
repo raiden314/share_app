@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "login" => "users#login_form"
   post "login" => "users#login"
   get "logout" => "users#logout"
-  get "users/:id/gid/destroy" => "users#g_destroy"
+  post "users/:id/gid/destroy" => "users#g_destroy"
   post "users/:id/update" =>"users#update"
   get "users/:id/edit" => "users#edit"
   get "users/:id/gnew" => "users#gnew"
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "signup" => "users#new"
   get 'users/index'
   post "users/:id/gm_destroy" => "users#gm_destroy"
+  post "users/:id/m_destroy" => "users#member_destroy"
   post "users/:id/destroy" => "users#destroy"
   get "/" => "home#top"
   get "users/:id" => "users#show"

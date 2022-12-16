@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action:authenticate_user,{only:[:index,:show,:edit,:update]}
+  
   def index
     if @current_user.gid.present?
       @posts = Post.where(user_gid: @current_user.gid)
@@ -10,6 +11,11 @@ class PostsController < ApplicationController
   end
   def show
     @post = Post.find_by(id:params[:id])
+    if @current_user.gid != @post.user_gid
+      flash[:notice]="権限がありません"
+      redirect_to("/users/index")
+    end
+    
   end
   def new
     @post=Post.new
