@@ -113,7 +113,7 @@
           </div>
         <% end %>
         <div class="form-floating">
-          <div class="form-control" id="floatingPassword"><%= @user.gid %></div>
+          <div class="form-control" id="floatingPassword"><%= link_to("#{@user.gid}", "/users/index") %></div>
           <label for="floatingPassword">Group ID:</label>
         </div>
         <% if @user.id == @current_user.id %>
