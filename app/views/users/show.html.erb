@@ -119,7 +119,7 @@
         <% if @user.id == @current_user.id %>
         <!--アカウント削除ボタン-->
         <div class="form-floating">
-          <div  class="btn btn-primary btn-block btn-large" id="button"><%= link_to("削除", "/users/#{@user.id}/destroy",  { method: "post" }) %></div>
+          <div  class="btn btn-primary btn-block btn-large" id="button"><%= button_to("削除", "/users/#{@user.id}/destroy", data: { turbo_method: :delete }) %></div>
           
           </div>
         
