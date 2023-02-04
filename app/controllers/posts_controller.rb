@@ -4,11 +4,11 @@ class PostsController < ApplicationController
 
   #同じグループではない人を弾く
   def ensure_correct_group_user_p
-    @post=Post.find_by(id:@current_user.id)
-    if @post.user_gid == Post.find_by(id: params[:id]).user_gid
-    else
-      if Post.find_by(id: params[:id]).user_id != @post.user_id
-        flash[:notice]="権限がありません"
+    @user=User.find(@current_user.id)
+    if @user.gid != User.find_by(id:Post.find(params[:id]).user_id).gid
+      binding.pry
+      if Post.find_by(id: params[:id]).user_id != @user.id
+        # flash[:notice]="権限がありません"
         redirect_to("/users/#{@current_user.id}")
       end
     end
@@ -20,12 +20,11 @@ class PostsController < ApplicationController
     else
       @posts = Post.where(user_id: "#{@current_user.id}")
     end
-    # binding.pry
   end
   def show
     @post = Post.find_by(id:params[:id])
     if @current_user.gid != @post.user_gid
-      flash[:notice]="権限がありません"
+      # flash[:notice]="権限がありません"
       redirect_to("/users/index")
     end
     
@@ -45,8 +44,7 @@ class PostsController < ApplicationController
       @Ke=page.meta['keywords']
       @post=Post.new(url:params[:url],title:@Ti,summary:@Su,keyword:@Ke,user_id:@current_user.id,user_gid:@current_user.gid)
       if @post.save
-        # 変数flash[:notice]に、指定されたメッセージを代入してください
-        flash[:notice]="投稿を作成しました"
+        # flash[:notice]="投稿を作成しました"
         redirect_to("/posts/index")
       else
         render("posts/new",status: :unprocessable_entity)
@@ -67,8 +65,7 @@ class PostsController < ApplicationController
     @post.keyword=params[:keyword]
     @post.save
     if @post.save
-      # 変数flash[:notice]に指定されたメッセージを代入してください
-      flash[:notice]="投稿を編集しました"
+      # flash[:notice]="投稿を編集しました"
       redirect_to("/posts/index")
     else
       render("posts/edit",status: :unprocessable_entity)
@@ -77,7 +74,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find_by(id: params[:id])
     @post.destroy
-    flash[:notice]="投稿を削除しました"
+    # flash[:notice]="投稿を削除しました"
     redirect_to("/posts/index")
   end
 end

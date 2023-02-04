@@ -9,14 +9,14 @@ class ApplicationController < ActionController::Base
   #ログインしていないかを判断する
   def authenticate_user
     if @current_user==nil
-      flash[:notice]="ログインが必要です"
+      # flash[:notice]="ログインが必要です"
       redirect_to("/login")
     end
   end
   #ログインしているかを判断する
   def forbid_login_user
     if @current_user
-      flash[:notice] = "すでにログインしています"
+      # flash[:notice] = "すでにログインしています"
       redirect_to("/users/index")
     end
   end

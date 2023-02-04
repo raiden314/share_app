@@ -25,14 +25,15 @@
       <!--グローバルナビゲーション-->
       <div class="px-3 py-2 bg-dark text-white">
         <div class="container">
-          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href='<%= "/users/#{@current_user.id}" %>' class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+          <div class="d-flex flex-wrap align-items-center  justify-content-lg-start">
+            <div class="justify-content-center d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-video2" viewBox="0 0 16 16">
                 <path d="M10 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
                 <path d="M2 1a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2ZM1 3a1 1 0 0 1 1-1h2v2H1V3Zm4 10V2h9a1 1 0 0 1 1 1v9c0 .285-.12.543-.31.725C14.15 11.494 12.822 10 10 10c-3.037 0-4.345 1.73-4.798 3H5Zm-4-2h3v2H2a1 1 0 0 1-1-1v-1Zm3-1H1V8h3v2Zm0-3H1V5h3v2Z"/>
               </svg> 
-              <%= link_to("プロフィール", "/users/#{@current_user.id}") %>
-            </a>
+              <p class="p">プロフィール</p>
+            </div>
+            
             
               <!--記事一覧nav-->
               <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small hover">
@@ -78,7 +79,7 @@
                       <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855a.75.75 0 0 0-.124 1.329l4.995 3.178 1.531 2.406a.5.5 0 0 0 .844-.536L6.637 10.07l7.494-7.494-1.895 4.738a.5.5 0 1 0 .928.372l2.8-7Zm-2.54 1.183L5.93 9.363 1.591 6.602l11.833-4.733Z"/>
                       <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
                     </svg>
-                    <%= link_to("新規投稿","/posts/new") %>
+                    <%= link_to("新規投稿","/posts/new",class:"padding") %>
                   </a>
                 </li>
       
@@ -89,7 +90,7 @@
                       <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
                       <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                     </svg>
-                    <%= link_to("ログアウト", "/logout") %>
+                    <%= link_to("ログアウト", "/logout" ,class:"padding")%>
                   </a>
                 </li>
               </ul>
@@ -100,6 +101,7 @@
 
   <!--メインの内容-->
   <main>
+  <% if @user.id == @current_user.id %>
     <div class="login-header">
       <h2>アカウント</h2>
         <div class="form-floating">
@@ -116,32 +118,36 @@
           <div class="form-control" id="floatingPassword"><%= link_to("#{@user.gid}", "/users/index") %></div>
           <label for="floatingPassword">Group ID:</label>
         </div>
+        <% end %>
         <% if @user.id == @current_user.id %>
-        <!--アカウント削除ボタン-->
-        <div class="form-floating">
-          <div  class="btn btn-primary btn-block btn-large" id="button"><%= button_to("削除", "/users/#{@user.id}/destroy", data: { turbo_method: :delete }) %></div>
-          
-          </div>
+        
         
     
-      <div class="account-btn">
+      <div>
         <!--アカウント編集ボタン-->
         <div>
         
-          <div class="btn btn-primary btn-block btn-large"><%= link_to("アカウント編集", "/users/#{@user.id}/edit") %></div>
+          <div><%= link_to("アカウント編集", "/users/#{@user.id}/edit",class:"btn account-btn btn-primary btn-block btn-large") %></div>
       
         </div>
 
         <!--グループ作成ボタン-->
         <div>
-          <div class="btn btn-primary btn-block btn-large"><%= link_to("グループ作成", "/users/#{@user.id}/gnew") %></div>
+          <div><%= link_to("グループ作成", "/users/#{@user.id}/gnew",class:"btn account-btn btn-primary btn-block btn-large") %></div>
         </div>
-        <% end %>
+        
+
+        <!--アカウント削除ボタン-->
+        <div>
+          <div id="button"><%= button_to("削除", "/users/#{@user.id}/destroy", data: { turbo_method: :delete }, class:"btn account-btn btn-primary btn-block btn-large") %></div>
+          
+        </div>
       </div>
+      <% end %>
       <div class="user-view">
       <h3>本数:<%= @posts.count %>本</h3>
         <% @posts.each do |post| %>
-          <ul class="list-group">
+          <ul class="list-group1">
           <% if post.title != "" %>
             <li class="list-group-item"aria-current="true">タイトル:<%= link_to(post.title,"/posts/#{post.id}") %></li>
           <% else %>

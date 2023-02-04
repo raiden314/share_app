@@ -1,7 +1,10 @@
 
 <% content_for :css do %>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <%= stylesheet_link_tag 'base',:media => "all" %>
   <%= stylesheet_link_tag 'write',:media => "all" %>
+  <%= stylesheet_link_tag 'table',:media => "all" %>
 <% end %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -9,7 +12,6 @@
 <head>
   <meta charset="UTF-8">
     <title>detail</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
 
@@ -21,14 +23,15 @@
     <!--グローバルナビゲーション-->
     <div class="px-3 py-2 bg-dark text-white">
       <div class="container">
-        <a href='<%= "/users/#{@post.id}" %>' class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <div class="justify-content-center d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-              </svg>
-              <%= link_to("記事の詳細", "/users/#{@post.id}") %>
-            
-          
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg>
+            <p class="p">記事の詳細</p>
+          </div>
+        
               <!--記事一覧nav-->
               <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small hover">
               <ul class="nav col-lg-auto my-2 justify-content-center my-md-0 text-small">
@@ -112,7 +115,7 @@
 
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">URL</label>
-              <div class="form-control" id="exampleFormControlTextarea3"><%= link_to "#{@post.url}", "#{@post.url}" %></div>
+              <p class="form-control" id="exampleFormControlTextarea3"><%= link_to "ここをクリック", "#{@post.url}" %></p>
             </div>
                
             <div class="mb-3">
@@ -121,8 +124,8 @@
             </div>
             <% if @post.user_id == @current_user.id.to_s %>
               <div class="upload">
-                <label class="btn btn-outline-primary" ><%= link_to("編集", "/posts/#{@post.id}/edit") %></label>
-                <div class="btn btn-outline-primary"><%= button_to("削除", "/posts/#{@post.id}/destroy", data: { turbo_method: :delete }) %>
+                <label  ><%= link_to("編集", "/posts/#{@post.id}/edit",class:"btn btn-outline-primary") %></label>
+                <div ><%= button_to("削除", "/posts/#{@post.id}/destroy", data: { turbo_method: :delete },class:"btn btn-outline-primary") %>
               </div>
             <% end %>
             

@@ -131,6 +131,16 @@ a.btn-radius-gradient:hover {
   transform: scale(1.05);
 }
 
-.account-btn a{ 
-  margin-top: 10px;
+.account-btn{ 
+  margin-top: 5px;
 } 
+.form-signin{
+  text-align: center;
+}
+.list-group1{
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  border-radius: 0.25rem;
+  margin-bottom:10px;
+}

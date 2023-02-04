@@ -1,8 +1,4 @@
 /*全てに適応*/
-* { 
-  box-sizing:border-box; 
-}
-  
 html { 
     width: 100%; height:100%;  
 }
@@ -19,8 +15,13 @@ body {
     background-image: url('pastel_00026.jpg');
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
 }
+.padding{
+  padding-left: 10px;
+}
 
-
+.p{
+  margin-bottom: 0;
+}
 
 .outer{
     margin:auto;
@@ -70,7 +71,7 @@ body {
 .flash {
     padding: 10px 0;
     color: white;
-    background: rgb(251, 170, 88);
+    background: #fbaa58;
     text-align: center;
     position: absolute;
     top: 64px;

@@ -6,7 +6,7 @@ main{
 
   /* main内の各divごとに隙間を追加 */
   .contentBox div{
-    padding:20px;
+    padding:5px;
   }
   label{
     font-size:25px;

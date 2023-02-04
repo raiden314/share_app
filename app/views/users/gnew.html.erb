@@ -23,12 +23,18 @@
       <div class="px-3 py-2 bg-dark text-white">
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="<%= "/users/#{@current_user.id}" %>" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-video2" viewBox="0 0 16 16">
-                <path d="M10 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                <path d="M2 1a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2ZM1 3a1 1 0 0 1 1-1h2v2H1V3Zm4 10V2h9a1 1 0 0 1 1 1v9c0 .285-.12.543-.31.725C14.15 11.494 12.822 10 10 10c-3.037 0-4.345 1.73-4.798 3H5Zm-4-2h3v2H2a1 1 0 0 1-1-1v-1Zm3-1H1V8h3v2Zm0-3H1V5h3v2Z"/>
-              </svg> 
-              <%= link_to("プロフィール", "/users/#{@current_user.id}") %>            </a>
+              <div class="justify-content-center d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ui-checks" viewBox="0 0 16 16">
+                <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+              <p class="p">プロフィール</p>
+            </div>
+          
+
+
+
+
+
             
               <!--記事一覧nav-->
               <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small hover">
@@ -118,13 +124,13 @@
       
           <!--グループ作成ボタン-->
           <div>
-            <div class="btn btn-primary btn-block btn-large"><input type="submit" value="新規登録"></div>
+            <input  class="btn account-btn btn-primary btn-block btn-large" type="submit" value="新規登録">
           </div>
           <% end %>
-          <div class="btn btn-primary btn-block btn-large"><%= button_to("削除", "/users/#{@user.id}/gm_destroy", data: { turbo_method: :delete }) %></div>
+          <div ><%= button_to("削除", "/users/#{@user.id}/gm_destroy", data: { turbo_method: :delete },class:"btn account-btn btn-primary btn-block btn-large" ) %></div>
     </div>
     
-  </main>
+  </main> 
     
   <!--フッター-->
   <footer>

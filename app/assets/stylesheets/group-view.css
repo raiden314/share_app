@@ -1,6 +1,6 @@
 main{
    
-    margin:auto;
+    
     padding:20px;
 }
 
@@ -31,7 +31,11 @@ tr{
     height:40px; 
  }
 
- table{position: fixed;}
+ 
  h2{
     margin:auto;
+}
+table{
+    position: relative;
+    right: -40%;
 }

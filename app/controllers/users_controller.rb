@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.gid == User.find_by(id: params[:id]).gid
     else
       if User.find_by(id: params[:id]).id != @current_user.id
-        flash[:notice]="権限がありません"
+        # flash[:notice]="権限がありません"
         redirect_to("/users/#{@current_user.id}")
       end
     end
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   #そのユーザしか編集できない
   def ensure_correct_user
     if @current_user.id != params[:id].to_i
-      flash[:notice]="権限がありません"
+      # flash[:notice]="権限がありません"
       redirect_to("/users/index")
     end
   end
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     @user.gid_m=@user.id
     if @user.save
       session[:user_id]=@user.id
-      flash[:notice] = "ユーザー登録が完了しました"
+      # flash[:notice] = "ユーザー登録が完了しました"
       redirect_to("/users/#{@user.id}")
     else
       render("users/new",status: :unprocessable_entity)
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
       Post.where(user_id:"#{@user.id}").update(user_gid:@user.gid)
       if @user.save
         redirect_to("/users/#{@user.id}")
-        flash[:notice]="ユーザー情報を編集しました"
+        # flash[:notice]="ユーザー情報を編集しました"
       else
         @user.gid = params[:gid]
         render("users/edit",status: :unprocessable_entity)
@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     @user = User.find_by(name: params[:name], password: params[:password])
     if @user
       session[:user_id]=@user.id      
-      flash[:notice] = "ログインしました"
+      # flash[:notice] = "ログインしました"
       redirect_to("/users/#{@user.id}")
     else
       @error_message = "ユーザー名またはパスワードが間違っています"
@@ -103,7 +103,7 @@ class UsersController < ApplicationController
   end
   def logout
     session[:user_id]=nil
-    flash[:notice]="ログアウトしました"
+    # flash[:notice]="ログアウトしました"
     redirect_to("/login")
   end
   #グループIDを削除する
@@ -112,7 +112,7 @@ class UsersController < ApplicationController
     @user.gid = nil
     @user.save
     Post.where(user_id:"#{@user.id}").update(user_gid:"")
-    flash[:notice]="グループIDを削除しました"
+    # flash[:notice]="グループIDを削除しました"
     redirect_to("/users/#{@user.id}")
   end
   #管理者用のグループIDを削除する
@@ -125,7 +125,7 @@ class UsersController < ApplicationController
     if @user.save
       Post.where(user_gid:"#{@current_user.gid}").update(user_gid:nil)
       User.where(gid:"#{@current_user.gid}").update(gid:nil)
-      flash[:notice]="管理者用のグループIDを削除しました"
+      # flash[:notice]="管理者用のグループIDを削除しました"
       redirect_to("/users/#{@user.id}")
     end
   end
@@ -147,7 +147,7 @@ class UsersController < ApplicationController
     @user.save
     if @user.save
       Post.where(user_id:"#{@user.id}").update(user_gid:@user.gid)
-      flash[:notice] = "グループの代表者登録が完了しました"
+      # flash[:notice] = "グループの代表者登録が完了しました"
       redirect_to("/users/#{@user.id}")
     else
       @error_message="そのグループIDは使われています"
@@ -159,7 +159,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     Post.where(user_id:"#{@user.id}").update(user_gid:"")
     @user.destroy
-    flash[:notice]="ユーザを削除しました"
+    # flash[:notice]="ユーザを削除しました"
     redirect_to("/")
   end
   #管理者がメンバーを削除する事ができる
@@ -170,7 +170,7 @@ class UsersController < ApplicationController
     if @user.save
       Post.where(user_id:"#{@user.id}").update(user_gid:nil)
       redirect_to("/users/index")
-      flash[:notice]="メンバーを削除しました"
+      # flash[:notice]="メンバーを削除しました"
     else
       render("users/edit",status: :unprocessable_entity)
     end

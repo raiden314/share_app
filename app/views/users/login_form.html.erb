@@ -43,15 +43,15 @@
             <input type="password" name="password"  class="form-control" id="floatingPassword" value="<%= @password %>">
             <label for="floatingPassword">Password:</label>
           </div>
-          <div class="btn btn-primary btn-block btn-large">
-          <input type="submit" value="ログイン">
+          <div >
+          <input class="btn account-btn btn-primary btn-block btn-large" type="submit" value="ログイン">
           </div>
           <% end %>
           
 
         <!--新規作成ボタン-->
         <div class="btn-radius">
-          <div class="button btn-radius-gradient"><%= link_to("新規登録", "/signup") %></div>
+          <div ><%= link_to("新規登録", "/signup",class:"button btn-radius-gradient") %></div>
         </div>
       </div>
 
